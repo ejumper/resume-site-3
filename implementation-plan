@@ -1,0 +1,191 @@
+Implementation Plan: Resume Website Dynamic Content System
+Project Overview
+Build a dynamic portfolio website that loads different "contexts" (portfolio items) with either HTML content or asciinema terminal recordings. The site uses vanilla JavaScript to switch between contexts, manage URL state, and handle custom asciinema player controls.
+Current State
+✅ CSS Grid layout complete (body, header, main, footer)
+✅ HTML structure in place
+✅ SVG icons available (play, pause, loop, playall, 2x, 4x)
+✅ Content files exist (11 contexts with HTML/cast files)
+✅ directory.json metadata structure
+❌ JavaScript completely empty (needs full implementation)
+❌ Asciinema player files not downloaded
+Implementation Sections
+✅ SECTION 1: Foundation Setup
+Goal: Prepare the environment and fix data structure Tasks:
+Fix directory.json paths - remove "resume-site-3/" prefix from all paths
+Download asciinema player files to asciinema/ directory:
+asciinema-player.min.js
+asciinema-player.css
+Add script tags to index.html:
+asciinema player script
+script.js
+Create basic JavaScript structure in script.js:
+Global state object
+DOMContentLoaded event listener
+Main init function
+Files to modify:
+directory.json
+index.html (add script tags)
+script.js (create from scratch)
+Success criteria: script.js loads without errors, directory.json has clean paths
+✅SECTION 2: Core Navigation System
+Goal: Load contexts and handle URL-based navigation Tasks:
+Fetch and parse directory.json
+Implement URL hash reading/writing
+Create loadContext(contextName) function:
+Get context data from directory.json
+Clear previous content
+Determine content type (HTML vs cast files)
+Implement browser history integration:
+hashchange event listener
+Back/forward button support
+Load "home" context on first page load
+Basic error handling for:
+Malformed directory.json
+Missing context in directory.json
+Files to modify:
+script.js
+Success criteria: URL hash changes when manually edited, browser back button works, home context attempts to load
+✅SECTION 3: Description & Footer Navigation
+Goal: Load description HTML and generate footer navigation Tasks:
+Create loadDescription(path) function:
+Fetch HTML file
+Insert into .description div
+Handle file-not-found errors
+Create loadFooterGrid(contextItems) function:
+Clear .footer-grid
+Generate clickable items for each context
+Transform context names ("-" → " ")
+Add click handlers to switch contexts
+Create highlightCurrentContext(contextName) function:
+Add white border to current context in footer
+Remove border from others
+Integrate with loadContext function
+Files to modify:
+script.js
+Success criteria: Description loads, footer shows clickable contexts, white border on current, clicking switches contexts
+✅SECTION 4: HTML Content Display
+Goal: Load and display HTML content files Tasks:
+Create loadHTMLContent(path) function:
+Fetch HTML file
+Insert into .content div
+Handle file-not-found errors
+Ensure .content is scrollable (CSS already handles this)
+Test with various HTML contexts (creating-admin, apicallfailures, etc.)
+Files to modify:
+script.js
+Success criteria: HTML content displays correctly, images load, scrolling works, errors show file path
+✅SECTION 5: Asciinema Player Integration
+Goal: Load and play .cast files Tasks:
+Create loadAsciinemaContent(paths) function:
+Check if paths is array (multi-part) or string (single)
+Build player container structure in .content:
+Player div
+Custom controls div (empty for now)
+Parts legend div (empty for now)
+Create loadCastFile(path, playerElement) function:
+Use AsciinemaPlayer.create() API
+Set initial speed to 4x
+Handle .cast file load errors
+Initialize player for first part (if multi-part) or single file
+Add CSS for player container layout (grid: 3 rows)
+Files to modify:
+script.js
+styling/main.css (add .asciinema-container styles)
+Success criteria: .cast files play, speed is 4x, player displays centered
+✅SECTION 6: Custom Player Controls
+Goal: Replace default controls with custom UI Tasks:
+Create buildPlayerControls() function:
+Create control buttons using SVG icons
+Play/pause toggle (play.svg ↔ pause.svg)
+Speed toggle (2x.svg ↔ 4x.svg, default 4x)
+Loop mode toggle (loop.svg ↔ playall.svg, default playall)
+Implement control handlers:
+togglePlayPause() - player.play() / player.pause()
+toggleSpeed() - player.setSpeed(2) / player.setSpeed(4)
+toggleLoopMode() - update state for parts auto-advance behavior
+Hide default asciinema controls via CSS or player options
+Add CSS for controls layout (flexbox row, centered)
+Files to modify:
+script.js
+styling/main.css (add .player-controls styles)
+Success criteria: Custom controls visible, play/pause works, speed toggle works, icons swap correctly
+SECTION 7: Parts/Chapters System
+Goal: Multi-part playback with navigation Tasks:
+Create buildPartsLegend(paths, currentIndex) function:
+Generate clickable items for each .cast file
+Transform filenames to readable names ("1_docker-compose.cast" → "1. docker compose")
+Highlight current part with white outline
+Implement loadPart(index) function:
+Load specific .cast file
+Update parts legend highlighting
+Reset player state
+Implement auto-advance:
+Listen to player 'ended' event
+Load next part automatically
+Loop back to part 0 after last part (if playall mode)
+Loop current part (if loop mode)
+Add click handlers to parts legend items
+Files to modify:
+script.js
+styling/main.css (add .parts-legend styles)
+Success criteria: Parts legend shows all parts, clicking loads that part, auto-advance works, loop/playall modes work
+SECTION 8: State Management
+Goal: Properly manage state across context switches Tasks:
+Create resetPlaybackState() function:
+Stop any playing asciinema
+Clear intervals/event listeners
+Reset part index to 0
+Call resetPlaybackState() when switching contexts
+Ensure URL hash stays synchronized:
+Update on context switch
+Don't create duplicate history entries
+Handle edge cases:
+Direct URL access with hash (#docker-https-nginx)
+Invalid hash in URL (fallback to home)
+Switching between HTML and asciinema contexts
+Files to modify:
+script.js
+Success criteria: No memory leaks, clean transitions, URL always correct, direct links work
+SECTION 9: Polish & Testing
+Goal: Refinement and comprehensive testing Tasks:
+Test all 11 contexts:
+home (HTML)
+docker-https-nginx (5-part asciinema)
+config-ip, ddns-portforwarding, port-forwarding (HTML)
+apicallfailures (HTML)
+configuring-ras, creating-admin, creating-gpo, promote-dc, setting-password (HTML)
+Error handling verification:
+Test with broken path in directory.json
+Test with missing .html file
+Test with missing .cast file
+CSS refinement:
+Adjust asciinema player size (rem units)
+Ensure footer scrolls horizontally on desktop
+Test mobile swipe (may need touch event library)
+Optional: Remove debug outlines from CSS
+Cross-browser testing
+Files to modify:
+script.js (bug fixes)
+styling/*.css (refinements)
+Success criteria: All contexts load correctly, all errors display helpful messages, responsive design works
+Critical Files Reference
+/home/ejumps/Nextcloud/Jumperpedia/2Projects/1Repos/resume-site-3/script.js - Main implementation
+/home/ejumps/Nextcloud/Jumperpedia/2Projects/1Repos/resume-site-3/directory.json - Data structure
+/home/ejumps/Nextcloud/Jumperpedia/2Projects/1Repos/resume-site-3/index.html - Add script tags
+/home/ejumps/Nextcloud/Jumperpedia/2Projects/1Repos/resume-site-3/styling/main.css - Asciinema layout
+Implementation Strategy
+Work through sections sequentially (each builds on previous)
+Test after each section before moving forward
+Section 1-4 will get basic HTML contexts working
+Section 5-7 will get asciinema working
+Section 8-9 polish everything
+Estimated Complexity
+Section 1: Simple (data cleanup, downloads)
+Section 2: Medium (core logic)
+Section 3-4: Simple (straightforward DOM manipulation)
+Section 5: Medium (asciinema API integration)
+Section 6: Medium (custom UI controls)
+Section 7: Complex (multi-part state management)
+Section 8: Medium (state cleanup)
+Section 9: Simple (testing and tweaks)

@@ -1,0 +1,85 @@
+{
+    "🐧 linux-labs": {
+        "redirect": "docker-https-nginx"},
+    "🛜 networking-labs": {
+        "redirect": "ddns-portforwarding"},
+    "🪟 windows-labs": {
+        "redirect": "configuring-ras"},
+            
+    
+    
+    "home": {
+        "content": "contexts/home/content/aboutme.html",
+        "description": "contexts/home/description/education.html",
+        "footer-grid": ["🐧 linux-labs", "🛜 networking-labs", "🪟 windows-labs"]
+        },
+
+
+
+
+    "docker-https-nginx": {
+        "content": [
+            "contexts/linux-admin/docker-https-nginx/content/1.cast",
+            "contexts/linux-admin/docker-https-nginx/content/2.cast",
+            "contexts/linux-admin/docker-https-nginx/content/3.cast",
+            "contexts/linux-admin/docker-https-nginx/content/4.cast",
+            "contexts/linux-admin/docker-https-nginx/content/5.cast"
+        ],
+        "description": "contexts/linux-admin/docker-https-nginx/description/description.html",
+        "footer-grid": ["docker-https-nginx", "config-ip"]
+    },
+    "config-ip": {
+        "content": "contexts/linux-admin/config-ip/content/1.cast",
+        "description": "contexts/linux-admin/config-ip/description/description.html",
+        "footer-grid": ["docker-https-nginx", "config-ip"]
+    },
+
+
+
+
+    "ddns-portforwarding": {
+        "content": "contexts/networking/ddns-portforwarding/content/ddns.html",
+        "description": "contexts/networking/ddns-portforwarding/description/description.html",
+        "footer-grid": ["ddns-portforwarding", "port-forwarding", "apicallfailures"]
+    },
+    "port-forwarding": {
+        "content": "contexts/networking/port-forwarding/content/portforwarding.html",
+        "description": "contexts/networking/port-forwarding/description/description.html",
+        "footer-grid": ["ddns-portforwarding", "port-forwarding", "apicallfailures"]
+    },
+    "apicallfailures": {
+        "content": "contexts/networking/apicallfailures/content/apicallfailures.html",
+        "description": "contexts/troubleshooting/apicallfailures/description/description.html",
+        "footer-grid": ["ddns-portforwarding", "port-forwarding", "apicallfailures"]
+    },
+
+
+
+
+    "configuring-ras": {
+        "content": "contexts/windows-admin/configuring-ras/content/content.html",
+        "description": "contexts/windows-admin/configuring-ras/description/description.html",
+        "footer-grid": ["configuring-ras", "creating-admin", "creating-gpo", "promote-dc", "setting-password"]
+    },
+    "creating-admin": {
+        "content": "contexts/windows-admin/creating-admin/content/content.html",
+        "description": "contexts/windows-admin/creating-admin/description/description.html",
+        "footer-grid": ["configuring-ras", "creating-admin", "creating-gpo", "promote-dc", "setting-password"]
+    },
+    
+    "creating-gpo": {
+        "content": "contexts/windows-admin/creating-gpo/content/content.html",
+        "description": "contexts/windows-admin/creating-gpo/description/description.html",
+        "footer-grid": ["configuring-ras", "creating-admin", "creating-gpo", "promote-dc", "setting-password"]
+    },
+    "promote-dc": {
+        "content": "contexts/windows-admin/promote-dc/content/content.html",
+        "description": "contexts/windows-admin/promote-dc/description/description.html",
+        "footer-grid": ["configuring-ras", "creating-admin", "creating-gpo", "promote-dc", "setting-password"]
+    },
+    "setting-password": {
+        "content": "contexts/windows-admin/setting-password/content/content.html",
+        "description": "contexts/windows-admin/setting-password/description/description.html",
+        "footer-grid": ["configuring-ras", "creating-admin", "creating-gpo", "promote-dc", "setting-password"]
+    }
+}

@@ -1,0 +1,166 @@
+.main-grid{
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    gap: 0.5%;
+    height: 100%;
+    width: 100%;
+}
+
+.description{
+    outline: solid 2px hsla(300, 100%, 50%, var(--layout));
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 1rem;
+    border-bottom: 2px solid hsla(0, 0%, 50%, 0.5);
+}
+
+@container (aspect-ratio > 1.2){
+    .main-grid{
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1fr;
+    }
+
+    .description{
+        border-bottom: none;
+        border-right: 2px solid hsla(0, 0%, 50%, 0.5);
+    }
+}
+
+.content{
+    outline: solid 2px hsla(50, 100%, 50%, var(--layout));
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+/* Style images in content and description areas */
+.content img,
+.description img {
+    width: 90%;
+    max-width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Asciinema player container */
+.asciinema-container {
+    display: grid;
+    grid-template-rows: 1fr auto auto auto;
+    row-gap: 0.25rem;
+    outline: solid 3px hsla(300, 100%, 50%, var(--layout));
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    align-items: stretch; /* Stretch items to fill grid rows */
+}
+
+.asciinema-player {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* Player wrapper transform setup for scaling */
+.asciinema-container .asciinema-player-wrapper {
+    transform-origin: center center;
+}
+
+.timeline-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.timeline {
+    width: 100%;
+    height: 0.2rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0.25rem;
+    position: relative;
+    cursor: pointer;
+    transition: height 0.2s;
+}
+
+.timeline:hover {
+    height: 0.5rem;
+}
+
+.timeline-progress {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0.25rem;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+.player-controls {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-btn {
+    background: none;
+    border: transparent;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.control-btn:active {
+    transform: scale(1);
+}
+
+.control-btn img {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    filter: brightness(0) saturate(100%) invert(var(--icon-invert, 0));
+}
+
+.parts-legend {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.2rem .5rem;
+    box-sizing: border-box;
+}
+
+.part-item {
+    padding: 0.2rem .5rem;
+    border: transparent;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.part-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.part-item:active {
+    border: 1px solid rgb(255, 255, 255);
+}

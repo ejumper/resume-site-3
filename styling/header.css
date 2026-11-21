@@ -1,0 +1,124 @@
+header{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 0.5%;
+    padding: 0.5%;
+    box-sizing: border-box;
+}
+
+.header-left{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    outline: solid 2px hsla(75, 100%, 50%, var(--layout));
+}
+
+.header-center{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    outline: solid 2px hsla(175, 100%, 50%, var(--layout));
+    padding: 0.5%;
+    box-sizing: border-box;
+}
+
+.header-right{
+    display: grid;
+    align-items: center;
+    outline: solid 2px hsla(175, 100%, 50%, var(--layout));
+}
+
+.title{
+    outline: solid 2px hsla(275, 100%, 50%, var(--layout));
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5%;
+    box-sizing: border-box;
+}
+
+.name{
+    outline: solid 2px hsla(225, 100%, 50%, var(--layout));
+    justify-self: center;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    font-size: clamp(1.2rem, 6vw, 2.5rem);
+}
+
+.job{
+    outline: solid 2px hsla(125, 100%, 50%, var(--layout));
+    justify-self: center;
+    margin: 0;
+    padding: 0;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+}
+
+.links{
+    outline: solid 2px hsla(100, 100%, 50%, var(--layout));
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    padding: 0.5%;
+    box-sizing: border-box;
+}
+
+:root{
+    --header-clamp: clamp(.8em, 5vw, 1.8em)
+}
+
+.email{
+    outline: solid 2px hsla(177, 100%, 50%, var(--layout));
+    margin: 0;
+    padding: 0;
+    height: var(--header-clamp);
+    width: auto;
+    filter: brightness(0) saturate(100%) invert(var(--icon-invert, 0));
+}
+
+.call{
+    outline: solid 2px hsla(177, 100%, 50%, var(--layout));
+    margin: 0;
+    padding: 0;
+    height: var(--header-clamp);
+    width: auto;
+    filter: brightness(0) saturate(100%) invert(var(--icon-invert, 0));
+}
+
+.text{
+    outline: solid 2px hsla(177, 100%, 50%, var(--layout));
+    margin: 0;
+    padding: 0;
+    height: var(--header-clamp);
+    width: auto;
+    filter: brightness(0) saturate(100%) invert(var(--icon-invert, 0));
+}
+
+.resume{
+    margin: 0;
+    padding: .3rem;
+    border-radius: .5rem;
+    text-align: center;
+    outline: solid 2px hsla(177, 100%, 50%, var(--layout));
+    border: 2px solid white;
+    font-size: clamp(0.7rem, 2vw, 1rem);
+}
+
+/* Link styling for header elements */
+header a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+header a:hover {
+    opacity: 0.8;
+}
